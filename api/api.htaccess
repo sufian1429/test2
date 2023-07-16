@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# เรียกใช้ api.php เมื่อมีเส้นทาง URL เข้าถึง /api/
+RewriteRule ^api/.*$ api.php [QSA,L]

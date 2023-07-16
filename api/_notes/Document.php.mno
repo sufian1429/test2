@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_profile" value="name:mem_ID;datatype:int,name:mem_name;datatype:string,name:mem_level;datatype:string,name:mem_img;datatype:blob,name:mem_status;datatype:string,name:mem_password;datatype:string" />
+</info>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test Cases</title>
+</head>
+<body>
+    <h1>Insert Data</h1>
+
+    <form method="POST" action="api.php">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+        
+        <input type="submit" value="Add User">
+    </form>
+    <h1>API Test Cases</h1>
+    <button onclick="getUsers()">Test Case 1: ดึงข้อมูลทั้งหมด</button>
+    <button onclick="getUser(1)">Test Case 2: ดึงข้อมูลตามรหัสผู้ใช้</button>
+    <button onclick="addUser()">Test Case 3: เพิ่มข้อมูลใหม่</button>
+    <button onclick="updateUser(1)">Test Case 4: อัปเดตข้อมูล</button>
+    <button onclick="deleteUser(1)">Test Case 5: ลบข้อมูล</button>
+
+    <script>
+        function getUsers() {
+            fetch('\assign_job\api')
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
+        }
+        
+        function getUser(userId) {
+            fetch(`\assign_job\api/${userId}`)
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
+        }
+        
+        function addUser() {
+            fetch('\assign_job\api', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: 'New User',
+                    email: 'newuser@example.com'
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+        }
+        
+        function updateUser(userId) {
+            fetch(`\assign_job\api/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: 'Updated User',
+                    email: 'updateduser@example.com'
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+        }
+        
+        function deleteUser(userId) {
+            fetch(`\assign_job\api/${userId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+        }
+    </script>
+    
+    <a href="edit_profile.php">
+    <i class='bx bxs-cog'></i>
+    <span class="text">Edit Profile</span>
+  </a>
+</body>
+</html>
+
